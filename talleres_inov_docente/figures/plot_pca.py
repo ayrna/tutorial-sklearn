@@ -20,8 +20,8 @@ def plot_pca_illustration():
     axes[0].set_title("Datos originales")
     axes[0].scatter(X_blob[:, 0], X_blob[:, 1], c=X_pca[:, 0], linewidths=0,
                     s=60, cmap='viridis')
-    axes[0].set_xlabel("característica 1")
-    axes[0].set_ylabel("característica 2")
+    axes[0].set_xlabel("caracteristica 1")
+    axes[0].set_ylabel("caracteristica 2")
     axes[0].arrow(pca.mean_[0], pca.mean_[1], S[0] * pca.components_[0, 0],
                   S[0] * pca.components_[0, 1], width=.1, head_width=.3,
                   color='k')
@@ -51,11 +51,11 @@ def plot_pca_illustration():
     axes[2].set_aspect('equal')
     axes[2].set_ylim(-8, 8)
 
-    axes[3].set_title("Recuperación de los datos con una componente")
+    axes[3].set_title("Recuperacion de los datos con una componente")
     axes[3].scatter(X_inverse[:, 0], X_inverse[:, 1], c=X_pca[:, 0],
                     linewidths=0, s=60, cmap='viridis')
-    axes[3].set_xlabel("característica 1")
-    axes[3].set_ylabel("característica 2")
+    axes[3].set_xlabel("caracteristica 1")
+    axes[3].set_ylabel("caracteristica 2")
     axes[3].set_aspect('equal')
     axes[3].set_xlim(-8, 4)
     axes[3].set_ylim(-8, 4)
@@ -75,8 +75,8 @@ def plot_pca_whitening():
 
     axes[0].set_title("Datos originales")
     axes[0].scatter(X_blob[:, 0], X_blob[:, 1], c=X_pca[:, 0], linewidths=0, s=60, cmap='viridis')
-    axes[0].set_xlabel("Característica 1")
-    axes[0].set_ylabel("Característica 2")
+    axes[0].set_xlabel("Caracteristica 1")
+    axes[0].set_ylabel("Caracteristica 2")
     axes[0].set_aspect('equal')
 
     axes[1].set_title("Datos limpiados")

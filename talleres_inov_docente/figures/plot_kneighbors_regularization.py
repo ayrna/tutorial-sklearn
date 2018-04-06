@@ -32,10 +32,10 @@ def plot_kneighbors_regularization():
     for n_neighbors, ax in zip([2, 5, 20], axes.ravel()):
         kneighbor_regression = KNeighborsRegressor(n_neighbors=n_neighbors)
         kneighbor_regression.fit(X, y)
-        ax.plot(x, y_no_noise, label="función real")
+        ax.plot(x, y_no_noise, label="funcion real")
         ax.plot(x, y, "o", label="datos")
         ax.plot(x_test, kneighbor_regression.predict(x_test[:, np.newaxis]),
-                label="predicción")
+                label="prediccion")
         ax.legend()
         ax.set_title("n_neighbors = %d" % n_neighbors)
 
