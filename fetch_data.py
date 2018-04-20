@@ -98,7 +98,7 @@ def check_sms(datasets_folder):
 
 if __name__ == "__main__":
     datasets_folder = get_datasets_folder()
-    check_imdb(datasets_folder)
+    #check_imdb(datasets_folder)
     check_titanic(datasets_folder)
     check_sms(datasets_folder)
 
