@@ -57,12 +57,13 @@ conda install Pillow
 
 ### Preparación de equipos en la UCO (ThinkStation)
 
-Los equipos de la UCO están provistos de todo el material necesario para crear un entorno donde trabajaremos durante todas las sesiones de los talleres. Con el comando `pip` instalamos las bibliotecas necesarias para trabajar::
+Los equipos de la UCO están provistos de todo el material necesario para crear un entorno donde trabajaremos durante todas las sesiones de los talleres. Con el comando `pip` instalamos las bibliotecas necesarias para trabajar:
 ```bash
-$ pip install scikit-learn pandas
+$ pip install --user --upgrade scikit-learn pandas
 ```
+Como puedes observamos, instalamos las librerías con la opción ``--user``, ya que si no requeriríamos permisos de administración. Si tienes algún tipo de problema durante la instalación, puedes limpiar la carpeta ``$HOME/.local/lib/python2.7/site-packages``, pero vigila previamente que no tengas librerías que quieras mantener.
 
-En algunas instalaciones de Linux hemos visto que la dependencia argparse no se instala automáticamente, puedes arreglarlo así:
+En algunas instalaciones de Linux hemos visto que la dependencia ``argparse`` no se instala automáticamente, puedes arreglarlo así:
 ```bash
 $ pip install argparse
 ```
