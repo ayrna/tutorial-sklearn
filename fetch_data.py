@@ -19,7 +19,7 @@ SPAM_URL = "https://raw.githubusercontent.com/amueller/scipy-2017-sklearn/master
 
 def get_datasets_folder():
     here = os.path.dirname(__file__)
-    notebooks = os.path.join(here, 'notebooks-spanish')
+    notebooks = os.path.join(here, 'talleres_inov_docente')
     datasets_folder = os.path.abspath(os.path.join(notebooks, 'datasets'))
     datasets_archive = os.path.abspath(os.path.join(notebooks, 'datasets.zip'))
 
@@ -98,7 +98,7 @@ def check_sms(datasets_folder):
 
 if __name__ == "__main__":
     datasets_folder = get_datasets_folder()
-    check_imdb(datasets_folder)
+    #check_imdb(datasets_folder)
     check_titanic(datasets_folder)
     check_sms(datasets_folder)
 
