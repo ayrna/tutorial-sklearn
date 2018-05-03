@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>11-extraccion_caracteristicas_texto</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>3-01-extraccion_caracteristicas_texto</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11726,9 +11726,7 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}
-
-@media print {
+}@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11749,7 +11747,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11778,9 +11776,9 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 </pre></div>
 
 </div>
@@ -11788,8 +11786,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11797,19 +11794,17 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>En muchas tareas, como en la detección de <em>spam</em>, los datos de entrada son cadenas de texto. El texto libre con longitud variable está muy lejos de lo que necesitamos para hacer aprendizaje automático en scikit-learn (representaciones numéricas de tamaño fijo).
-Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en una representación numérica, utilizando lo que se conoce como <em>bag-of-words</em>, que proporciona una estructura de datos que es compatible con los algoritmos de aprendizaje automático de scikit-learn.</p>
+<p>En muchas tareas, como en la detección de <em>spam</em>, los datos de entrada son cadenas de texto. El problema del procesamiento de texto, es que este tiene una longitud variable, lo cuál hace imposible que sea directamente procesable por la mayoría de algoritmos de aprendizaje automático, ya que estos necesitan representaciones numéricas de tamaño fijo.
+Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en una representación numérica de tamaño fijo, utilizando lo que se conoce como <em>bag-of-words</em>, que proporciona una estructura de datos que es compatible con los algoritmos de aprendizaje automático de scikit-learn.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11818,15 +11813,14 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Vamos a asumir que cada texto del dataset es una cadena, que puede ser una frase, un correo, un libro o un artículo completo de noticias. Para representar el patrón, primero partimos la cadena en un conjunto de tokens, que se corresponden con palabras (normalizadas de alguna forma). Un modo simple de hacer esto es partir la frase según los espacios en blanco y luego pasar a minúsculas todas las palabras.</p>
-<p>Después hacemos un vocabulario a partir de todos los tokens (palabras en minúsculas) que encontramos en el dataset completo. Esto suele resultar en un vocabulario muy largo. Ahora tendríamos que ver si las palabras del vocabulario aparecen o no en nuestro patrón. Representamos cada patrón (cadena) con un vector, donde cada entrada nos informa acerca de cuántas veces aparece una palabra del vocabulario en el patrón (en su versión más simple un valor binario, 1 si aparece al menos una vez, 0 sino).</p>
+<p>Vamos a asumir que cada texto del dataset es una cadena: una frase, un correo, un libro o un artículo completo de noticias. Para representar el patrón, primero partimos la cadena en un conjunto de <em>tokens</em> o piezas, que se corresponden con palabras (normalizadas de alguna forma). Un modo simple de hacer esto es partir la frase según los espacios en blanco y luego pasar a minúsculas todas las palabras.</p>
+<p>Después hacemos un vocabulario a partir de todos los tokens (palabras en minúsculas) que encontramos en el dataset completo. Esto suele dar lugar a un vocabulario muy largo. Ahora tendríamos que ver si las palabras del vocabulario aparecen o no en nuestro patrón. Representamos cada patrón (cadena) con un vector, donde cada entrada nos informa acerca de cuántas veces aparece una palabra del vocabulario en el patrón (en su versión más simple un valor binario, 1 si aparece al menos una vez, 0 sino).</p>
 <p>Ya que cada ejemplo va a tener solo unas cuantas palabras y el vocabulario suele ser muy largo, la mayoría de entradas son ceros, lo que lleva a una representación de alta dimensionalidad pero dispersa.</p>
-<p>Este método se llama bolsa de palabras porque el orden de las palabras se pierde completamente (solo sabemos qué aparecen).</p>
+<p>Este método se denomina <em>bolsa-de-palabras</em> porque el orden de las palabras se pierde completamente (solo sabemos que aparecen).</p>
 
 </div>
 </div>
@@ -11836,7 +11830,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Algunos dicen que el mundo terminará siendo fuego,&quot;</span><span class="p">,</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Algunos dicen que el mundo terminará siendo fuego,&quot;</span><span class="p">,</span>
      <span class="s2">&quot;Otros dicen que terminará siendo hielo.&quot;</span><span class="p">]</span>
 </pre></div>
 
@@ -11850,7 +11844,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11862,7 +11856,9 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[3]:</div>
+
 
 
 
@@ -11881,7 +11877,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">CountVectorizer</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
 
 <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
 <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -11896,16 +11892,18 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[4]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>CountVectorizer(analyzer=&#39;word&#39;, binary=False, decode_error=&#39;strict&#39;,
-        dtype=&lt;class &#39;numpy.int64&#39;&gt;, encoding=&#39;utf-8&#39;, input=&#39;content&#39;,
+<pre>CountVectorizer(analyzer=u&#39;word&#39;, binary=False, decode_error=u&#39;strict&#39;,
+        dtype=&lt;type &#39;numpy.int64&#39;&gt;, encoding=u&#39;utf-8&#39;, input=u&#39;content&#39;,
         lowercase=True, max_df=1.0, max_features=None, min_df=1,
         ngram_range=(1, 1), preprocessor=None, stop_words=None,
-        strip_accents=None, token_pattern=&#39;(?u)\\b\\w\\w+\\b&#39;,
+        strip_accents=None, token_pattern=u&#39;(?u)\\b\\w\\w+\\b&#39;,
         tokenizer=None, vocabulary=None)</pre>
 </div>
 
@@ -11920,7 +11918,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectorizer</span><span class="o">.</span><span class="n">vocabulary_</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">vectorizer</span><span class="o">.</span><span class="n">vocabulary_</span>
 </pre></div>
 
 </div>
@@ -11932,21 +11930,23 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[5]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;algunos&#39;: 0,
- &#39;dicen&#39;: 1,
- &#39;el&#39;: 2,
- &#39;fuego&#39;: 3,
- &#39;hielo&#39;: 4,
- &#39;mundo&#39;: 5,
- &#39;otros&#39;: 6,
- &#39;que&#39;: 7,
- &#39;siendo&#39;: 8,
- &#39;terminará&#39;: 9}</pre>
+<pre>{u&#39;algunos&#39;: 0,
+ u&#39;dicen&#39;: 1,
+ u&#39;el&#39;: 2,
+ u&#39;fuego&#39;: 3,
+ u&#39;hielo&#39;: 4,
+ u&#39;mundo&#39;: 5,
+ u&#39;otros&#39;: 6,
+ u&#39;que&#39;: 7,
+ u&#39;siendo&#39;: 8,
+ u&#39;terminar\xe1&#39;: 9}</pre>
 </div>
 
 </div>
@@ -11960,7 +11960,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_bag_of_words</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X_bag_of_words</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11973,7 +11973,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_bag_of_words</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X_bag_of_words</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
 </div>
@@ -11985,7 +11985,9 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[7]:</div>
+
 
 
 
@@ -12004,7 +12006,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_bag_of_words</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X_bag_of_words</span>
 </pre></div>
 
 </div>
@@ -12016,12 +12018,14 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[8]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;2x10 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+<pre>&lt;2x10 sparse matrix of type &#39;&lt;type &#39;numpy.int64&#39;&gt;&#39;
 	with 14 stored elements in Compressed Sparse Row format&gt;</pre>
 </div>
 
@@ -12036,7 +12040,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_bag_of_words</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X_bag_of_words</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12048,7 +12052,9 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
+
 
 
 
@@ -12068,7 +12074,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12080,21 +12086,23 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[10]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;algunos&#39;,
- &#39;dicen&#39;,
- &#39;el&#39;,
- &#39;fuego&#39;,
- &#39;hielo&#39;,
- &#39;mundo&#39;,
- &#39;otros&#39;,
- &#39;que&#39;,
- &#39;siendo&#39;,
- &#39;terminará&#39;]</pre>
+<pre>[u&#39;algunos&#39;,
+ u&#39;dicen&#39;,
+ u&#39;el&#39;,
+ u&#39;fuego&#39;,
+ u&#39;hielo&#39;,
+ u&#39;mundo&#39;,
+ u&#39;otros&#39;,
+ u&#39;que&#39;,
+ u&#39;siendo&#39;,
+ u&#39;terminar\xe1&#39;]</pre>
 </div>
 
 </div>
@@ -12108,7 +12116,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Volver al texto original (perdemos el orden y la capitalización)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Volver al texto original (perdemos el orden y la capitalización)</span>
 <span class="n">vectorizer</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">X_bag_of_words</span><span class="p">)</span>
 </pre></div>
 
@@ -12121,15 +12129,16 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[11]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>[array([&#39;algunos&#39;, &#39;dicen&#39;, &#39;el&#39;, &#39;fuego&#39;, &#39;mundo&#39;, &#39;que&#39;, &#39;siendo&#39;,
-        &#39;terminará&#39;], 
-       dtype=&#39;&lt;U9&#39;),
- array([&#39;dicen&#39;, &#39;hielo&#39;, &#39;otros&#39;, &#39;que&#39;, &#39;siendo&#39;, &#39;terminará&#39;], 
+<pre>[array([u&#39;algunos&#39;, u&#39;dicen&#39;, u&#39;el&#39;, u&#39;fuego&#39;, u&#39;mundo&#39;, u&#39;que&#39;, u&#39;siendo&#39;,
+        u&#39;terminar\xe1&#39;], dtype=&#39;&lt;U9&#39;),
+ array([u&#39;dicen&#39;, u&#39;hielo&#39;, u&#39;otros&#39;, u&#39;que&#39;, u&#39;siendo&#39;, u&#39;terminar\xe1&#39;],
        dtype=&#39;&lt;U9&#39;)]</pre>
 </div>
 
@@ -12139,13 +12148,12 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Codificaci&#243;n-tf-idf">Codificaci&#243;n tf-idf<a class="anchor-link" href="#Codificaci&#243;n-tf-idf">&#182;</a></h1><p>Una transformación bastante útil que a menudo es aplicada a la codificación <em>bag-of-words</em> es el escalado <em>term-frequency inverse-document-frequency</em> (<a href="https://es.wikipedia.org/wiki/Tf-idf">tf-idf</a>), frecuencia de término -- frecuencia inversa de documento (tener en cuenta la frecuencia de ocurrencia del término en la colección de documentos). Es una transformación no lineal del conteo de palabras. Consiste en una medida numérica que expresa cuán relevante es una palabra para un documento en una colección. Esta medida se utiliza a menudo como un factor de ponderación en recuperación de información y en minería de textos. El valor tf-idf aumenta proporcionalmente al número de veces que una palabra aparece en el documento, pero es compensado por la frecuencia de la palabra en la colección global de documentos, lo que permite manejar el hecho de que algunas palabras son generalmente más comunes que otras.</p>
-<p>La codificación tf-idf rescala las palabras que son comunes para que tengan menos peso:</p>
+<p>La codificación tf-idf reescala las palabras que son comunes para que tengan menos peso:</p>
 
 </div>
 </div>
@@ -12155,7 +12163,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">TfidfVectorizer</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
 
 <span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
 <span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -12170,17 +12178,19 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[12]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>TfidfVectorizer(analyzer=&#39;word&#39;, binary=False, decode_error=&#39;strict&#39;,
-        dtype=&lt;class &#39;numpy.int64&#39;&gt;, encoding=&#39;utf-8&#39;, input=&#39;content&#39;,
+<pre>TfidfVectorizer(analyzer=u&#39;word&#39;, binary=False, decode_error=u&#39;strict&#39;,
+        dtype=&lt;type &#39;numpy.int64&#39;&gt;, encoding=u&#39;utf-8&#39;, input=u&#39;content&#39;,
         lowercase=True, max_df=1.0, max_features=None, min_df=1,
-        ngram_range=(1, 1), norm=&#39;l2&#39;, preprocessor=None, smooth_idf=True,
+        ngram_range=(1, 1), norm=u&#39;l2&#39;, preprocessor=None, smooth_idf=True,
         stop_words=None, strip_accents=None, sublinear_tf=False,
-        token_pattern=&#39;(?u)\\b\\w\\w+\\b&#39;, tokenizer=None, use_idf=True,
+        token_pattern=u&#39;(?u)\\b\\w\\w+\\b&#39;, tokenizer=None, use_idf=True,
         vocabulary=None)</pre>
 </div>
 
@@ -12195,10 +12205,10 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -12210,11 +12220,13 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
 
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[[ 0.41  0.29  0.41  0.41  0.    0.41  0.    0.29  0.29  0.29]
- [ 0.    0.35  0.    0.    0.5   0.    0.5   0.35  0.35  0.35]]
+<pre>[[0.41 0.29 0.41 0.41 0.   0.41 0.   0.29 0.29 0.29]
+ [0.   0.35 0.   0.   0.5  0.   0.5  0.35 0.35 0.35]]
 </pre>
 </div>
 </div>
@@ -12223,8 +12235,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12233,12 +12244,11 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Bigramas-y-n-gramas">Bigramas y n-gramas<a class="anchor-link" href="#Bigramas-y-n-gramas">&#182;</a></h1><p>En el ejemplo de la figura que había al principio de este libro, hemos usado la división en tokens basada en 1-gramas (unigramas): cada token representa un único elemento con respecto al criterio de división.</p>
+<h1 id="Bigramas-y-n-gramas">Bigramas y n-gramas<a class="anchor-link" href="#Bigramas-y-n-gramas">&#182;</a></h1><p>En el ejemplo de la figura que había al principio de este cuaderno hemos usado la división en tokens basada en 1-gramas (unigramas): cada token representa un único elemento con respecto al criterio de división.</p>
 <p>Puede ser que no siempre sea una buena idea descartar completamente el orden de las palabras, ya que las frases compuestas suelen tener significados específicos y algunos modificadores (como la palabra <code>no</code>) pueden invertir el significado de una palabra.</p>
 <p>Una forma simple de incluir este orden son los n-gramas, que no miran un único token, sino todos los pares de tokens vecinos. Por ejemplo, si usamos división en tokens basada en 2-gramas (bigramas), agruparíamos juntas las palabras con un solape de una palabra. Con 3-gramas (trigramas), trabajaríamos con un solape de dos palabras...</p>
 <ul>
@@ -12247,7 +12257,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <li>2-gramas: "así es", "es como", "como consigues", "consigues hormigas"</li>
 <li>3-gramas: "así es como", "es como consigues", "como consigues hormigas"</li>
 </ul>
-<p>El valor de $n$ para los n-gramas que resultará en el rendimiento óptimo para nuestro modelo predictivo depende enteramente del algoritmo de aprendizaje, del dataset y de la tarea. O, en otras palabras, tenemos que considerar $n$ como un parámetro de ajuste (en cuadernos posteriores veremos como tratar estos parámetros de ajuste).</p>
+<p>El valor de $n$ para los n-gramas que resultará en el rendimiento óptimo para nuestro modelo predictivo depende enteramente del algoritmo de aprendizaje, del conjunto de datos y de la tarea. O, en otras palabras, tenemos que considerar $n$ como un parámetro de ajuste (en cuadernos posteriores veremos como tratar estos parámetros de ajuste).</p>
 <p>Ahora vamos a crear un modelo basado en <em>bag-of-words</em> de bigramas usando la clase de scikit-learn <code>CountVectorizer</code>:</p>
 
 </div>
@@ -12258,7 +12268,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Utilizar secuencias de tokens de longitud mínima 2 y máxima 2</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Utilizar secuencias de tokens de longitud mínima 2 y máxima 2</span>
 <span class="n">bigram_vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">bigram_vectorizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
@@ -12272,16 +12282,18 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[14]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>CountVectorizer(analyzer=&#39;word&#39;, binary=False, decode_error=&#39;strict&#39;,
-        dtype=&lt;class &#39;numpy.int64&#39;&gt;, encoding=&#39;utf-8&#39;, input=&#39;content&#39;,
+<pre>CountVectorizer(analyzer=u&#39;word&#39;, binary=False, decode_error=u&#39;strict&#39;,
+        dtype=&lt;type &#39;numpy.int64&#39;&gt;, encoding=u&#39;utf-8&#39;, input=u&#39;content&#39;,
         lowercase=True, max_df=1.0, max_features=None, min_df=1,
         ngram_range=(2, 2), preprocessor=None, stop_words=None,
-        strip_accents=None, token_pattern=&#39;(?u)\\b\\w\\w+\\b&#39;,
+        strip_accents=None, token_pattern=u&#39;(?u)\\b\\w\\w+\\b&#39;,
         tokenizer=None, vocabulary=None)</pre>
 </div>
 
@@ -12296,7 +12308,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bigram_vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">bigram_vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12308,21 +12320,23 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[15]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;algunos dicen&#39;,
- &#39;dicen que&#39;,
- &#39;el mundo&#39;,
- &#39;mundo terminará&#39;,
- &#39;otros dicen&#39;,
- &#39;que el&#39;,
- &#39;que terminará&#39;,
- &#39;siendo fuego&#39;,
- &#39;siendo hielo&#39;,
- &#39;terminará siendo&#39;]</pre>
+<pre>[u&#39;algunos dicen&#39;,
+ u&#39;dicen que&#39;,
+ u&#39;el mundo&#39;,
+ u&#39;mundo terminar\xe1&#39;,
+ u&#39;otros dicen&#39;,
+ u&#39;que el&#39;,
+ u&#39;que terminar\xe1&#39;,
+ u&#39;siendo fuego&#39;,
+ u&#39;siendo hielo&#39;,
+ u&#39;terminar\xe1 siendo&#39;]</pre>
 </div>
 
 </div>
@@ -12336,7 +12350,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bigram_vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">bigram_vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12348,7 +12362,9 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[16]:</div>
+
 
 
 
@@ -12363,8 +12379,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12378,7 +12393,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gram_vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">gram_vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">gram_vectorizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 
@@ -12391,16 +12406,18 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[17]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>CountVectorizer(analyzer=&#39;word&#39;, binary=False, decode_error=&#39;strict&#39;,
-        dtype=&lt;class &#39;numpy.int64&#39;&gt;, encoding=&#39;utf-8&#39;, input=&#39;content&#39;,
+<pre>CountVectorizer(analyzer=u&#39;word&#39;, binary=False, decode_error=u&#39;strict&#39;,
+        dtype=&lt;type &#39;numpy.int64&#39;&gt;, encoding=u&#39;utf-8&#39;, input=u&#39;content&#39;,
         lowercase=True, max_df=1.0, max_features=None, min_df=1,
         ngram_range=(1, 2), preprocessor=None, stop_words=None,
-        strip_accents=None, token_pattern=&#39;(?u)\\b\\w\\w+\\b&#39;,
+        strip_accents=None, token_pattern=u&#39;(?u)\\b\\w\\w+\\b&#39;,
         tokenizer=None, vocabulary=None)</pre>
 </div>
 
@@ -12415,7 +12432,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gram_vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">gram_vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12427,31 +12444,33 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[18]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;algunos&#39;,
- &#39;algunos dicen&#39;,
- &#39;dicen&#39;,
- &#39;dicen que&#39;,
- &#39;el&#39;,
- &#39;el mundo&#39;,
- &#39;fuego&#39;,
- &#39;hielo&#39;,
- &#39;mundo&#39;,
- &#39;mundo terminará&#39;,
- &#39;otros&#39;,
- &#39;otros dicen&#39;,
- &#39;que&#39;,
- &#39;que el&#39;,
- &#39;que terminará&#39;,
- &#39;siendo&#39;,
- &#39;siendo fuego&#39;,
- &#39;siendo hielo&#39;,
- &#39;terminará&#39;,
- &#39;terminará siendo&#39;]</pre>
+<pre>[u&#39;algunos&#39;,
+ u&#39;algunos dicen&#39;,
+ u&#39;dicen&#39;,
+ u&#39;dicen que&#39;,
+ u&#39;el&#39;,
+ u&#39;el mundo&#39;,
+ u&#39;fuego&#39;,
+ u&#39;hielo&#39;,
+ u&#39;mundo&#39;,
+ u&#39;mundo terminar\xe1&#39;,
+ u&#39;otros&#39;,
+ u&#39;otros dicen&#39;,
+ u&#39;que&#39;,
+ u&#39;que el&#39;,
+ u&#39;que terminar\xe1&#39;,
+ u&#39;siendo&#39;,
+ u&#39;siendo fuego&#39;,
+ u&#39;siendo hielo&#39;,
+ u&#39;terminar\xe1&#39;,
+ u&#39;terminar\xe1 siendo&#39;]</pre>
 </div>
 
 </div>
@@ -12465,7 +12484,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">transformada</span> <span class="o">=</span> <span class="n">gram_vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">transformada</span> <span class="o">=</span> <span class="n">gram_vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12473,8 +12492,7 @@ Sin embargo, hay una forma fácil y efectiva de transformar datos textuales en u
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12489,7 +12507,7 @@ Para analizar caracteres en lugar de palabras utilizamos el parámetro <code>ana
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X</span>
 </pre></div>
 
 </div>
@@ -12501,13 +12519,15 @@ Para analizar caracteres en lugar de palabras utilizamos el parámetro <code>ana
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[20]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Algunos dicen que el mundo terminará siendo fuego,&#39;,
- &#39;Otros dicen que terminará siendo hielo.&#39;]</pre>
+<pre>[&#39;Algunos dicen que el mundo terminar\xc3\xa1 siendo fuego,&#39;,
+ &#39;Otros dicen que terminar\xc3\xa1 siendo hielo.&#39;]</pre>
 </div>
 
 </div>
@@ -12521,7 +12541,7 @@ Para analizar caracteres en lugar de palabras utilizamos el parámetro <code>ana
 <div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">char_vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">analyzer</span><span class="o">=</span><span class="s2">&quot;char&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">char_vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">analyzer</span><span class="o">=</span><span class="s2">&quot;char&quot;</span><span class="p">)</span>
 <span class="n">char_vectorizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 
@@ -12534,16 +12554,18 @@ Para analizar caracteres en lugar de palabras utilizamos el parámetro <code>ana
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[21]:</div>
 
 
 
+
 <div class="output_text output_subarea output_execute_result">
-<pre>CountVectorizer(analyzer=&#39;char&#39;, binary=False, decode_error=&#39;strict&#39;,
-        dtype=&lt;class &#39;numpy.int64&#39;&gt;, encoding=&#39;utf-8&#39;, input=&#39;content&#39;,
+<pre>CountVectorizer(analyzer=&#39;char&#39;, binary=False, decode_error=u&#39;strict&#39;,
+        dtype=&lt;type &#39;numpy.int64&#39;&gt;, encoding=u&#39;utf-8&#39;, input=u&#39;content&#39;,
         lowercase=True, max_df=1.0, max_features=None, min_df=1,
         ngram_range=(2, 2), preprocessor=None, stop_words=None,
-        strip_accents=None, token_pattern=&#39;(?u)\\b\\w\\w+\\b&#39;,
+        strip_accents=None, token_pattern=u&#39;(?u)\\b\\w\\w+\\b&#39;,
         tokenizer=None, vocabulary=None)</pre>
 </div>
 
@@ -12558,7 +12580,7 @@ Para analizar caracteres en lugar de palabras utilizamos el parámetro <code>ana
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">char_vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">char_vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -12570,10 +12592,12 @@ Para analizar caracteres en lugar de palabras utilizamos el parámetro <code>ana
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
 
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39; d&#39;, &#39; e&#39;, &#39; f&#39;, &#39; h&#39;, &#39; m&#39;, &#39; q&#39;, &#39; s&#39;, &#39; t&#39;, &#39;al&#39;, &#39;ar&#39;, &#39;ce&#39;, &#39;di&#39;, &#39;do&#39;, &#39;e &#39;, &#39;eg&#39;, &#39;el&#39;, &#39;en&#39;, &#39;er&#39;, &#39;fu&#39;, &#39;go&#39;, &#39;gu&#39;, &#39;hi&#39;, &#39;ic&#39;, &#39;ie&#39;, &#39;in&#39;, &#39;l &#39;, &#39;lg&#39;, &#39;lo&#39;, &#39;mi&#39;, &#39;mu&#39;, &#39;n &#39;, &#39;na&#39;, &#39;nd&#39;, &#39;no&#39;, &#39;o &#39;, &#39;o,&#39;, &#39;o.&#39;, &#39;os&#39;, &#39;ot&#39;, &#39;qu&#39;, &#39;rm&#39;, &#39;ro&#39;, &#39;rá&#39;, &#39;s &#39;, &#39;si&#39;, &#39;te&#39;, &#39;tr&#39;, &#39;ue&#39;, &#39;un&#39;, &#39;á &#39;]
+<pre>[u&#39; d&#39;, u&#39; e&#39;, u&#39; f&#39;, u&#39; h&#39;, u&#39; m&#39;, u&#39; q&#39;, u&#39; s&#39;, u&#39; t&#39;, u&#39;al&#39;, u&#39;ar&#39;, u&#39;ce&#39;, u&#39;di&#39;, u&#39;do&#39;, u&#39;e &#39;, u&#39;eg&#39;, u&#39;el&#39;, u&#39;en&#39;, u&#39;er&#39;, u&#39;fu&#39;, u&#39;go&#39;, u&#39;gu&#39;, u&#39;hi&#39;, u&#39;ic&#39;, u&#39;ie&#39;, u&#39;in&#39;, u&#39;l &#39;, u&#39;lg&#39;, u&#39;lo&#39;, u&#39;mi&#39;, u&#39;mu&#39;, u&#39;n &#39;, u&#39;na&#39;, u&#39;nd&#39;, u&#39;no&#39;, u&#39;o &#39;, u&#39;o,&#39;, u&#39;o.&#39;, u&#39;os&#39;, u&#39;ot&#39;, u&#39;qu&#39;, u&#39;rm&#39;, u&#39;ro&#39;, u&#39;r\xe1&#39;, u&#39;s &#39;, u&#39;si&#39;, u&#39;te&#39;, u&#39;tr&#39;, u&#39;ue&#39;, u&#39;un&#39;, u&#39;\xe1 &#39;]
 </pre>
 </div>
 </div>
@@ -12582,8 +12606,7 @@ Para analizar caracteres en lugar de palabras utilizamos el parámetro <code>ana
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12603,7 +12626,7 @@ Para analizar caracteres en lugar de palabras utilizamos el parámetro <code>ana
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zen</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Beautiful is better than ugly.</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">zen</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Beautiful is better than ugly.</span>
 <span class="s2">Explicit is better than implicit.</span>
 <span class="s2">Simple is better than complex.</span>
 <span class="s2">Complex is better than complicated.</span>
@@ -12622,19 +12645,6 @@ Para analizar caracteres en lugar de palabras utilizamos el parámetro <code>ana
 <span class="s2">If the implementation is hard to explain, it&#39;s a bad idea.</span>
 <span class="s2">If the implementation is easy to explain, it may be a good idea.</span>
 <span class="s2">Namespaces are one honking great idea -- let&#39;s do more of those!&quot;&quot;&quot;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
